@@ -32,6 +32,8 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
 
   private static final long serialVersionUID = 1L;
 
+  public static final String CAST_ERROR_WEEKLY_PERIOD = "Unknown implementation of WeeklyPeriod: %s";
+
   /**
    * Returns the name of this special.
    *
@@ -152,7 +154,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
     if (activePeriod instanceof WeeklyPeriodEmbeddable) {
       this.activePeriod = (WeeklyPeriodEmbeddable) activePeriod;
     } else {
-      throw new IllegalArgumentException("Unknown implementation of WeeklyPeriod: " + activePeriod.getClass());
+      throw new IllegalArgumentException(String.format(CAST_ERROR_WEEKLY_PERIOD, activePeriod.getClass()));
     }
   }
 }
